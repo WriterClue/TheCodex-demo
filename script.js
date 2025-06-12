@@ -13,6 +13,9 @@ const aboutSection = document.getElementById("about");
 const aboutGradient = aboutSection.querySelector(".gradient-bg");
 const aboutTitle = aboutSection.querySelector(".about-title");
 const aboutText = aboutSection.querySelector(".about-description");
+const heroBg = hero.querySelector(".hero-bg");
+const heroTitle = hero.querySelector(".hero-title");
+const heroSubtext = hero.querySelector(".hero-subtext");
 
 // === SCROLL EVENTS ===
 window.addEventListener("scroll", () => {
@@ -25,7 +28,16 @@ window.addEventListener("scroll", () => {
   } else {
     nav.classList.remove("show");
   }
-
+// 🌁 Hero scroll zoom + text transition
+  if (scrollY > 50) {
+    heroBg.classList.add("scrolled");
+    heroTitle.classList.add("fade-out");
+    heroSubtext.classList.add("fade-in");
+  } else {
+    heroBg.classList.remove("scrolled");
+    heroTitle.classList.remove("fade-out");
+    heroSubtext.classList.remove("fade-in");
+  }
   // ☁ Fade nav on scroll-zoom
   if (scrollY > zoomSection.offsetTop - 100) {
     nav.classList.add("fade-out");
