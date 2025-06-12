@@ -31,9 +31,11 @@ body.loaded #preloader {
   height: 100vh;
   overflow: hidden;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
 }
+
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -41,11 +43,18 @@ body.loaded #preloader {
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
-  opacity: 0; /* Start invisible */
-  filter: blur(15px); /* Start blurred */
+  opacity: 0;
+  filter: blur(15px);
   animation: fogFadeIn 2.5s ease-out forwards;
-  z-index: 10;
+  z-index: 1;
+  transition: transform 1s ease, filter 1s ease;
 }
+
+.hero-bg.scrolled {
+  filter: blur(0);
+  transform: scale(1.05);
+}
+
 .hero-title {
   font-family: 'Georgia', serif;
   font-size: 3rem;
@@ -53,25 +62,52 @@ body.loaded #preloader {
   z-index: 2;
   opacity: 0;
   transform: scale(0.8);
-  animation: titleFadeExpand 3s ease-out forwards;
+  animation: titleFadeExpand 2.5s ease-out forwards;
   animation-delay: 1s;
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
+.hero-title.fade-out {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+.hero-subtext {
+  font-family: 'Georgia', serif;
+  font-size: 1.2rem;
+  color: #5e3c1a;
+  opacity: 0;
+  transform: translateY(20px);
+  z-index: 2;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.hero-subtext.fade-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Animations */
 @keyframes fogFadeIn {
-  0% {
+  from {
     opacity: 0;
     filter: blur(15px);
-    transform: scale(1.05);
   }
-  100% {
+  to {
     opacity: 1;
-    filter: blur(0);
-    transform: scale(1);
+    filter: blur(5px);
   }
 }
+
 @keyframes titleFadeExpand {
-  0% { opacity: 0; transform: scale(0.8); }
-  50% { opacity: 0.5; transform: scale(1.05); }
-  100% { opacity: 1; transform: scale(1); }
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
 /* 🌀 Zoom + Fog Section */
