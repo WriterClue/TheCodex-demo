@@ -59,3 +59,29 @@ window.addEventListener("scroll", () => {
     fogText.classList.add("reveal");
   }
 });
+
+// ===== ABOUT SECTION SCROLL LOGIC =====
+const aboutSection = document.getElementById("about");
+const aboutGradient = aboutSection.querySelector(".gradient-bg");
+const aboutTitle = aboutSection.querySelector(".about-title");
+const aboutText = aboutSection.querySelector(".about-description");
+
+window.addEventListener("scroll", () => {
+  const aboutTop = aboutSection.offsetTop;
+  const scrollY = window.scrollY + window.innerHeight;
+
+  // Show background gradient
+  if (scrollY > aboutTop + 100) {
+    aboutGradient.style.opacity = 1;
+  }
+
+  // Reveal the "About" title
+  if (scrollY > aboutTop + 200 && !aboutTitle.classList.contains("reveal")) {
+    aboutTitle.classList.add("reveal");
+  }
+
+  // Reveal paragraph text
+  if (scrollY > aboutTop + 300 && !aboutText.classList.contains("reveal")) {
+    aboutText.classList.add("reveal");
+  }
+});
