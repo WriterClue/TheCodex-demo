@@ -40,7 +40,7 @@ body.loaded #preloader {
   background-image: url("assets/academic-library.jpg");
   background-size: cover;
   background-position: center;
-  opacity: 0;
+  opacity: 1;
   animation: fogFadeIn 3s ease-out forwards;
   z-index: 1;
 }
