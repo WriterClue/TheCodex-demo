@@ -30,15 +30,11 @@ window.addEventListener("scroll", () => {
   }
   
 // 🌁 Hero scroll zoom + text transition
-  if (scrollY > 50) {
-    heroBg.classList.add("scrolled");
-    heroTitle.classList.add("fade-out");
-    heroSubtext.classList.add("fade-in");
-  } else {
-    heroBg.classList.remove("scrolled");
-    heroTitle.classList.remove("fade-out");
-    heroSubtext.classList.remove("fade-in");
-  }
+if (scrollY > 50) {
+  hero.classList.add("scrolled");
+} else {
+  hero.classList.remove("scrolled");
+}
   
   // ☁ Fade nav on scroll-zoom
   if (scrollY > zoomSection.offsetTop - 100) {
