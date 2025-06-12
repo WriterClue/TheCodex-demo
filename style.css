@@ -41,7 +41,7 @@ body.loaded #preloader {
   background-size: cover;
   background-position: center;
   opacity: 1;
-  animation: fogFadeIn 3s ease-out forwards;
+  animation: none
   z-index: 10;
 }
 .hero-title {
