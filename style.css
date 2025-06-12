@@ -134,3 +134,61 @@ body.loaded #preloader {
   opacity: 1;
   animation: fogFadeIn 3s ease-out;
   }
+
+/* ===== NAVIGATION BAR ===== */
+#main-nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: opacity 1s ease, transform 1s ease;
+  z-index: 1000;
+  background: rgba(100, 100, 100, 0.2); /* smoky translucent */
+  backdrop-filter: blur(8px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.nav-container {
+  display: flex;
+  padding: 1rem 2rem;
+  gap: 2rem;
+}
+
+.nav-link {
+  font-family: 'Georgia', serif;
+  color: #3a2a17;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-link:hover {
+  color: goldenrod;
+}
+
+.nav-link.active::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: goldenrod;
+}
+
+/* Show nav only after hero title */
+#main-nav.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade nav out on scroll past scroll-zoom section */
+#main-nav.fade-out {
+  opacity: 0;
+  transform: translateY(-100%);
+  }
