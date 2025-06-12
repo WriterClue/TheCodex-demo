@@ -1,55 +1,42 @@
-/* Preloader styles */
+/* 🎨 Preloader */
 #preloader {
   position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #f5e8d3; /* light brown */
+  inset: 0;
+  background-color: #f5e8d3;
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 9999;
   transition: opacity 0.5s ease;
 }
-
 .loader-text {
   font-family: 'Georgia', serif;
   font-size: 1.5rem;
-  color: #8b5e3c; /* rich brown */
+  color: #8b5e3c;
   animation: fadeInOut 1.5s infinite;
 }
-
 @keyframes fadeInOut {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 1; }
 }
-
-/* Hide preloader when it's done */
 body.loaded #preloader {
   opacity: 0;
   pointer-events: none;
 }
 
-/* ===== HERO SECTION ===== */
-
+/* 🌁 Hero */
 #hero {
   position: relative;
   width: 100%;
   height: 100vh;
   overflow: hidden;
-  background-color: #f5e8d3; /* fallback color */
   display: flex;
   align-items: center;
   justify-content: center;
 }
-
 .hero-bg {
   position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-image: url("assets/academic-library.jpg");
   background-size: cover;
   background-position: center;
@@ -57,65 +44,41 @@ body.loaded #preloader {
   animation: fogFadeIn 3s ease-out forwards;
   z-index: 1;
 }
-
 .hero-title {
   font-family: 'Georgia', serif;
   font-size: 3rem;
-  color: #5e3c1a; /* rich brown */
+  color: #5e3c1a;
   z-index: 2;
   opacity: 0;
   transform: scale(0.8);
   animation: titleFadeExpand 3s ease-out forwards;
   animation-delay: 1s;
 }
-
-/* ===== ANIMATIONS ===== */
-
 @keyframes fogFadeIn {
-  0% {
-    opacity: 0;
-    filter: blur(15px);
-  }
-  100% {
-    opacity: 1;
-    filter: blur(0);
-  }
+  0% { opacity: 0; filter: blur(15px); }
+  100% { opacity: 1; filter: blur(0); }
+}
+@keyframes titleFadeExpand {
+  0% { opacity: 0; transform: scale(0.8); }
+  50% { opacity: 0.5; transform: scale(1.05); }
+  100% { opacity: 1; transform: scale(1); }
 }
 
-@keyframes titleFadeExpand {
-  0% {
-    opacity: 0;
-    transform: scale(0.8);
-  }
-  50% {
-    opacity: 0.5;
-    transform: scale(1.05);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-}
-/* ===== ABOUT ===== */
+/* 🌀 Zoom + Fog Section */
 #scroll-zoom {
   position: relative;
   height: 100vh;
   overflow: hidden;
-  background-color: #f5e8d3;
 }
-
 .zoom-bg {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background-image: url("assets/academic-library.jpg");
   background-size: cover;
   background-position: center;
-  transform: scale(1);
-  transition: transform 0.5s ease-out;
+  transition: transform 0.5s ease-out, filter 0.5s ease-out;
   z-index: 1;
 }
-
 .scroll-text {
   position: absolute;
   bottom: 20%;
@@ -128,72 +91,54 @@ body.loaded #preloader {
   opacity: 0;
   transition: opacity 2s ease;
 }
-
-/* Foggy fade-in effect */
 .foggy-text.reveal {
   opacity: 1;
   animation: fogFadeIn 3s ease-out;
-  }
+}
 
-/* ===== NAVIGATION BAR ===== */
+/* ☁ Navigation Bar */
 #main-nav {
   position: fixed;
   top: 0;
-  left: 0;
   width: 100%;
   opacity: 0;
   transform: translateY(-100%);
   transition: opacity 1s ease, transform 1s ease;
-  z-index: 1000;
-  background: rgba(100, 100, 100, 0.2); /* smoky translucent */
+  background: rgba(100, 100, 100, 0.2);
   backdrop-filter: blur(8px);
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
   overflow-x: auto;
   white-space: nowrap;
+  z-index: 1000;
 }
-
 .nav-container {
   display: flex;
-  padding: 1rem 2rem;
   gap: 2rem;
+  padding: 1rem 2rem;
 }
-
 .nav-link {
   font-family: 'Georgia', serif;
   color: #3a2a17;
   font-size: 1rem;
   text-decoration: none;
-  transition: color 0.3s;
-  position: relative;
 }
-
-.nav-link:hover {
-  color: goldenrod;
-}
-
+.nav-link:hover { color: goldenrod; }
 .nav-link.active::after {
   content: '';
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 100%;
+  display: block;
   height: 2px;
   background: goldenrod;
+  margin-top: 0.25rem;
 }
-
-/* Show nav only after hero title */
 #main-nav.show {
   opacity: 1;
   transform: translateY(0);
 }
-
-/* Fade nav out on scroll past scroll-zoom section */
 #main-nav.fade-out {
   opacity: 0;
   transform: translateY(-100%);
-  }
+}
 
-/* ===== ABOUT SECTION ===== */
+/* 📖 About Section */
 #about {
   position: relative;
   min-height: 300vh;
@@ -201,14 +146,11 @@ body.loaded #preloader {
   align-items: center;
   justify-content: center;
   background-color: #efdecd;
-  overflow: hidden;
   font-family: 'Cookie', cursive;
 }
-
 .gradient-bg {
   position: absolute;
-  width: 100%;
-  height: 100%;
+  inset: 0;
   background: linear-gradient(
     to bottom,
     #efdecd 0%,
@@ -220,7 +162,6 @@ body.loaded #preloader {
   transition: opacity 1s ease;
   z-index: 1;
 }
-
 .about-content {
   position: relative;
   z-index: 2;
@@ -228,44 +169,26 @@ body.loaded #preloader {
   text-align: center;
   max-width: 700px;
 }
-
-/* Writing Title */
 .about-title {
   font-family: 'Great Vibes', cursive;
   font-size: 30px;
   font-weight: bold;
   font-style: italic;
-  white-space: nowrap;
-  overflow: hidden;
-  border-right: 2px solid #3a2a17;
-  width: 0;
   opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease, transform 1s ease;
 }
-
-/* Writing Paragraph */
+.about-title.reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
 .about-description {
   font-size: 25px;
   line-height: 1.8;
   margin-top: 2rem;
-  white-space: pre-wrap;
-  overflow: hidden;
-  border-right: 1px solid #3a2a17;
-  width: 0;
   opacity: 0;
+  transition: opacity 1s ease 0.5s;
 }
-
-/* Keyframes */
-@keyframes typewriter {
-  from { width: 0; opacity: 1; }
-  to { width: 100%; opacity: 1; }
-}
-
-/* Apply on scroll */
-.about-title.reveal {
-  animation: typewriter 3s steps(20, end) forwards;
-}
-
 .about-description.reveal {
-  animation: typewriter 5s steps(80, end) forwards;
-  animation-delay: 1s;
+  opacity: 1;
   }
