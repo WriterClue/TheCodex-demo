@@ -3,7 +3,7 @@ window.addEventListener("load", () => {
   document.body.classList.add("loaded");
 });
 
-// === GLOBAL ELEMENTS ===
+// === GLOBAL ELEMENTS === \\
 const nav = document.getElementById("main-nav");
 const hero = document.getElementById("hero");
 const zoomSection = document.getElementById("scroll-zoom");
