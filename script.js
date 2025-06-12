@@ -28,6 +28,7 @@ window.addEventListener("scroll", () => {
   } else {
     nav.classList.remove("show");
   }
+  
 // 🌁 Hero scroll zoom + text transition
   if (scrollY > 50) {
     heroBg.classList.add("scrolled");
@@ -38,6 +39,7 @@ window.addEventListener("scroll", () => {
     heroTitle.classList.remove("fade-out");
     heroSubtext.classList.remove("fade-in");
   }
+  
   // ☁ Fade nav on scroll-zoom
   if (scrollY > zoomSection.offsetTop - 100) {
     nav.classList.add("fade-out");
