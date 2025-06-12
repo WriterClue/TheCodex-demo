@@ -1,87 +1,75 @@
+// === PRELOADER ===
 window.addEventListener("load", () => {
   document.body.classList.add("loaded");
 });
-// ===== SCROLL ZOOM + FOG TEXT ANIMATION =====
-window.addEventListener("scroll", () => {
-  const zoomSection = document.getElementById("scroll-zoom");
-  const zoomBg = zoomSection.querySelector(".zoom-bg");
-  const fogText = zoomSection.querySelector(".foggy-text");
 
-  const sectionTop = zoomSection.offsetTop;
-  const scrollPos = window.scrollY + window.innerHeight;
-
-  // Zoom effect as we scroll into view
-  if (scrollPos > sectionTop + 100) {
-    let scaleAmount = 1 + ((scrollPos - sectionTop) / 2000);
-    zoomBg.style.transform = `scale(${scaleAmount})`;
-  }
-
-  // Fade in foggy text
-  if (scrollPos > sectionTop + 200) {
-    fogText.classList.add("reveal");
-  }
-});
-// ===== SCROLL NAV CONTROL + ZOOM + BLUR EFFECT =====
+// === GLOBAL ELEMENTS ===
 const nav = document.getElementById("main-nav");
 const hero = document.getElementById("hero");
 const zoomSection = document.getElementById("scroll-zoom");
 const zoomBg = zoomSection.querySelector(".zoom-bg");
 const fogText = zoomSection.querySelector(".foggy-text");
-
-window.addEventListener("scroll", () => {
-  const scrollPos = window.scrollY + window.innerHeight;
-  const heroBottom = hero.offsetTop + hero.offsetHeight;
-  const zoomTop = zoomSection.offsetTop;
-
-  // === NAV LOGIC ===
-  if (window.scrollY > hero.offsetHeight / 2) {
-    nav.classList.add("show");
-  } else {
-    nav.classList.remove("show");
-  }
-
-  if (window.scrollY > zoomTop - 100) {
-    nav.classList.add("fade-out");
-  } else {
-    nav.classList.remove("fade-out");
-  }
-
-  // === ZOOM + BLUR LOGIC ===
-  if (scrollPos > zoomTop + 100) {
-    let scaleAmount = 1 + ((scrollPos - zoomTop) / 2000);
-    let blurAmount = Math.min((scrollPos - zoomTop) / 100, 10); // cap blur at 10px
-    zoomBg.style.transform = `scale(${scaleAmount})`;
-    zoomBg.style.filter = `blur(${blurAmount}px)`;
-  }
-
-  // === REVEAL TEXT ===
-  if (scrollPos > zoomTop + 200) {
-    fogText.classList.add("reveal");
-  }
-});
-
-// ===== ABOUT SECTION SCROLL LOGIC =====
 const aboutSection = document.getElementById("about");
 const aboutGradient = aboutSection.querySelector(".gradient-bg");
 const aboutTitle = aboutSection.querySelector(".about-title");
 const aboutText = aboutSection.querySelector(".about-description");
 
+// === SCROLL EVENTS ===
 window.addEventListener("scroll", () => {
-  const aboutTop = aboutSection.offsetTop;
-  const scrollY = window.scrollY + window.innerHeight;
+  const scrollY = window.scrollY;
+  const scrollBottom = scrollY + window.innerHeight;
 
-  // Show background gradient
-  if (scrollY > aboutTop + 100) {
+  // 🔽 Show nav after hero
+  if (scrollY > hero.offsetHeight / 2) {
+    nav.classList.add("show");
+  } else {
+    nav.classList.remove("show");
+  }
+
+  // ☁ Fade nav on scroll-zoom
+  if (scrollY > zoomSection.offsetTop - 100) {
+    nav.classList.add("fade-out");
+  } else {
+    nav.classList.remove("fade-out");
+  }
+
+  // 🔍 Zoom + Blur Background
+  const zoomTop = zoomSection.offsetTop;
+  if (scrollBottom > zoomTop + 100) {
+    let scale = 1 + ((scrollBottom - zoomTop) / 2000);
+    let blur = Math.min((scrollBottom - zoomTop) / 100, 10);
+    zoomBg.style.transform = `scale(${scale})`;
+    zoomBg.style.filter = `blur(${blur}px)`;
+  } else {
+    zoomBg.style.transform = `scale(1)`;
+    zoomBg.style.filter = `blur(0px)`;
+  }
+
+  // 🌫 Reveal foggy text
+  if (scrollBottom > zoomTop + 200) {
+    fogText.classList.add("reveal");
+  } else {
+    fogText.classList.remove("reveal");
+  }
+
+  // 🌈 About gradient
+  if (scrollBottom > aboutSection.offsetTop + 100) {
     aboutGradient.style.opacity = 1;
+  } else {
+    aboutGradient.style.opacity = 0;
   }
 
-  // Reveal the "About" title
-  if (scrollY > aboutTop + 200 && !aboutTitle.classList.contains("reveal")) {
+  // ✍ Reveal about title
+  if (scrollBottom > aboutSection.offsetTop + 200) {
     aboutTitle.classList.add("reveal");
+  } else {
+    aboutTitle.classList.remove("reveal");
   }
 
-  // Reveal paragraph text
-  if (scrollY > aboutTop + 300 && !aboutText.classList.contains("reveal")) {
+  // ✍ Reveal about description
+  if (scrollBottom > aboutSection.offsetTop + 300) {
     aboutText.classList.add("reveal");
+  } else {
+    aboutText.classList.remove("reveal");
   }
 });
