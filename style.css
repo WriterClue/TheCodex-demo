@@ -30,3 +30,69 @@ body.loaded #preloader {
   opacity: 0;
   pointer-events: none;
 }
+
+/* ===== HERO SECTION ===== */
+
+#hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f5e8d3; /* fallback color */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assets/academic-library.jpg");
+  background-size: cover;
+  background-position: center;
+  opacity: 0;
+  animation: fogFadeIn 3s ease-out forwards;
+  z-index: 1;
+}
+
+.hero-title {
+  font-family: 'Georgia', serif;
+  font-size: 3rem;
+  color: #5e3c1a; /* rich brown */
+  z-index: 2;
+  opacity: 0;
+  transform: scale(0.8);
+  animation: titleFadeExpand 3s ease-out forwards;
+  animation-delay: 1s;
+}
+
+/* ===== ANIMATIONS ===== */
+
+@keyframes fogFadeIn {
+  0% {
+    opacity: 0;
+    filter: blur(15px);
+  }
+  100% {
+    opacity: 1;
+    filter: blur(0);
+  }
+}
+
+@keyframes titleFadeExpand {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.05);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
