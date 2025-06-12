@@ -37,7 +37,7 @@ body.loaded #preloader {
 .hero-bg {
   position: absolute;
   inset: 0;
-  background-image: url("assets/academic-library.jpg");
+  background-image: url("asset/academic-library.jpg");
   background-size: cover;
   background-position: center;
   opacity: 1;
@@ -73,7 +73,7 @@ body.loaded #preloader {
 .zoom-bg {
   position: absolute;
   inset: 0;
-  background-image: url("assets/academic-library.jpg");
+  background-image: url("asset/academic-library.jpg");
   background-size: cover;
   background-position: center;
   transition: transform 0.5s ease-out, filter 0.5s ease-out;
